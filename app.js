@@ -9,8 +9,7 @@
     careers: { title: "Career Explorer", icon: "✧", file: "careers.html" },
     progress: { title: "My Progress", icon: "◔", file: "progress.html" },
     notes: { title: "My Notes", icon: "✎", file: "notes.html" },
-    goals: { title: "Study Goals", icon: "◎", file: "goals.html" },
-    about: { title: "About StudySpace", icon: "♡", file: "about.html" }
+    goals: { title: "Study Goals", icon: "◎", file: "goals.html" }
   };
   const colors = ["lav", "blue", "pink", "green"];
   const defaultState = {
@@ -410,12 +409,12 @@
       <div class="main-area">
         <header class="topbar"><div class="top-left"><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button><a class="mobile-brand" href="index.html"><span class="brand-mark">✿</span>StudySpace</a><div class="crumb">StudySpace&nbsp; / &nbsp;<strong>${pages[page].title}</strong></div></div><div class="top-actions"><span class="date-pill">☀ &nbsp;${todayString()}</span><div class="avatar" title="Your study space">S</div></div></header>
         <main class="content" id="main-content">${pageContent()}</main>
-        <footer class="footer"><span>© ${new Date().getFullYear()} StudySpace · A little room to bloom.</span><a href="about.html">Made for curious minds ♡</a></footer>
+        <footer class="footer"><span>© ${new Date().getFullYear()} StudySpace · A little room to bloom.</span></footer>
       </div>
     </div>`;
   }
   function pageContent() {
-    const renderers = { home: homePage, subjects: subjectsPage, topics: topicsPage, timetable: timetablePage, careers: careersPage, progress: progressPage, notes: notesPage, goals: goalsPage, about: aboutPage };
+    const renderers = { home: homePage, subjects: subjectsPage, topics: topicsPage, timetable: timetablePage, careers: careersPage, progress: progressPage, notes: notesPage, goals: goalsPage };
     return (renderers[page] || homePage)();
   }
   function heading(kicker, title, description, action) {
@@ -960,10 +959,6 @@
     )].join("");
     return `${heading("SMALL STEPS, SO MUCH GROWTH", "Study Goals", "Set gentle intentions for your learning, and give yourself credit for every one.")}<div class="dashboard-grid"><section class="card"><div class="card-title"><h2>Your intentions</h2><span class="tag">${complete} of ${state.goals.length} complete</span></div><div class="progress-track" style="margin-bottom:17px"><div class="progress-fill" style="width:${state.goals.length ? complete / state.goals.length * 100 : 0}%"></div></div><div class="check-list">${goals || emptyState("🎯", "No goals just yet. Start with one thing you would love to do.")}</div></section><section class="card"><div class="card-title"><h2>Choose your next little win</h2><span>🌱</span></div><form class="form-grid" data-form="goal"><label class="field full">My intention<input class="input" name="title" required maxlength="90" placeholder="e.g. Read one chapter"></label><label class="field full">Goal type<select class="select" name="type" id="goal-type"><option value="weekly">Weekly goal</option><option value="daily">Daily goal</option><option value="subject">Subject goal</option><option value="topic">Topic completion goal</option></select></label><label class="field full" id="goal-subject-field" hidden>Subject<select class="select" name="subject">${goalSubjects}</select></label><label class="field full" id="goal-topic-field" hidden>Selected topic<select class="select" name="topicKey">${goalTopics}</select><span class="field-hint">This goal completes when you mark the linked topic complete in Topic Library.</span></label><label class="field full">A little detail<input class="input" name="detail" maxlength="50" placeholder="e.g. 20 minutes"></label><div class="field full"><button class="button" type="submit">Add my goal ✨</button></div></form><div style="margin-top:22px;padding:15px;border-radius:15px;background:#fff7eb"><strong>🌼 A gentle reminder</strong><p class="subheading" style="font-size:12px;margin:6px 0 0">Goals are here to support you, not pressure you. It's okay to adjust your plans.</p></div></section></div>`;
   }
-  function aboutPage() {
-    return `${heading("A SPACE TO GROW", "About StudySpace", "A calmer, kinder way to make room for learning.")}<section class="about-hero"><div class="eyebrow">HELLO, CURIOUS MIND</div><h2 style="font-size:clamp(1.5rem,3vw,2rem)">Learning looks good on you. 💜</h2><p>StudySpace is your personal corner for planning study sessions, organizing what you're learning, and keeping track of the progress you're making. It's designed to make studying feel a little more joyful and a lot more yours.</p><p style="margin-bottom:0">No pressure to be perfect. Just a gentle place to begin again, whenever you're ready.</p></section><div class="section-head"><div><h2>Made for the way you learn</h2><p>Everything has a little room to grow.</p></div></div><div class="grid three"><article class="card value-card"><div class="topic-icon">🌱</div><h2>Grow at your pace</h2><p class="subheading">Your goals, your rhythm, your own definition of progress.</p></article><article class="card value-card"><div class="topic-icon" style="background:#e8f5ff">🧺</div><h2>Find your focus</h2><p class="subheading">Keep your subjects, schedule, notes, and ideas together.</p></article><article class="card value-card"><div class="topic-icon" style="background:#fff0f6">✨</div><h2>Dream out loud</h2><p class="subheading">Explore new interests and imagine all the places they can take you.</p></article></div><div class="card" style="margin-top:19px"><h2>Your privacy matters</h2><p class="subheading">StudySpace saves your information in this browser on this device. Your notes, subjects, and plans stay in your browser's Local Storage; they are not sent to a server. Clearing browser data will remove saved information.</p><a class="button small soft" href="index.html">Back to my study space →</a></div>`;
-  }
-
   function toast(message) {
     const old = document.querySelector(".toast");
     if (old) old.remove();
